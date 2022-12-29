@@ -11,13 +11,27 @@ const colors = [
     'indigo',
 ];  
 
+function setColor(color){
+    document.body.style.backgroundColor = color;    
+    document.querySelector("#current-color").innerHTML = color;
+
+    const currentActiveButton = document.querySelector('button.active');
+
+    if (currentActiveButton != null){
+        currentActiveButton.classList.remove('active');
+    }
+    
+
+    document.querySelector(`button[data-color = ${color}]`).classList.add("active");
+}
+
 colors.forEach(color =>{
     const button = document.createElement("button");
     button.style.backgroundColor = color;
+    button.setAttribute("data-color", color);
 
     button.onclick = function (){
-        document.body.style.backgroundColor = color;
-        document.querySelector("#current-color").innerHTML = color;
+        setColor(color);
     }
 
     document.querySelector("div.colors").appendChild(button);
@@ -25,6 +39,6 @@ colors.forEach(color =>{
 
 document.body.onload = function (){
     const randomIndex = Math.floor(Math.random() * colors.length);
-    
-    console.log(randomIndex);
+    const color= colors[randomIndex];
+    setColor(color);
 }
