@@ -17,7 +17,7 @@ function setColor(color){
 
     const currentActiveButton = document.querySelector('button.active');
 
-    if (currentActiveButton != null){
+    if (currentActiveButton !== null){
         currentActiveButton.classList.remove('active');
     }
     
